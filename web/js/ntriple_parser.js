@@ -82,6 +82,7 @@ function makeVideoShotList(videoDictionary){
 
     $('a[href="#shot"]').click(function(){
         console.log($(this).attr('id'));
+
         return false;
     });
 }
@@ -183,3 +184,14 @@ function makeTriple (line) {
     return { s : results[0], p : results[1], o: results[2] }
 }
 
+function addTripleRow(line) {
+    var triple = makeTriple(line);
+
+    $('#triple-table > tbody:last').append(
+        '<tr>' +
+        '<td class="col-xs-4">' + triple.s + '</td>' +
+        '<td class="col-xs-4">' + triple.p + '</td>' +
+        '<td class="col-xs-4">' + triple.o + '</td>' +
+        '</td>' +
+        '</tr>');
+}
