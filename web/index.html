@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>Media Ontology Browser</title>
 
     <!-- All JavaScript at the bottom, except for Modernizr which
   enables HTML5 elements & feature detects -->
@@ -24,17 +24,17 @@
 <!--</div>-->
 
 <div class="container">
-    <!--<div class="jumbotron">-->
-        <!--<h1><b>M</b>edia <b>O</b>ntology <b>B</b>rowser</h1>-->
+    <div class="jumbotron">
+        <h1><b>M</b>edia <b>O</b>ntology <b>B</b>rowser</h1>
         <!--<p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>-->
-    <!--</div>-->
+    </div>
 
     <div class="row">
         <div class="panel panel-default">
-            <div class="col-sm-4 scrollit">
+            <div class="col-sm-4 video-list">
                 <div class="panel-heading">
                     <h4>
-                        Video Object
+                        <b>Video Object</b>
                     </h4>
                 </div>
                 <div id="video-group" class="panel-group">
@@ -45,15 +45,14 @@
             <div class="col-sm-8">
                 <div class="panel-heading">
                     <h4>
-                        Fixed Header Scrolling Table
+                        <b>Detail Shot</b>
                     </h4>
                 </div>
-                <table id="triple-table" class="table table-fixed">
-                    <thead>
+                <table id="triple-table" class="table table-bordered">
+                    <thead class="thead thead-inverse">
                     <tr>
-                        <th class="col-xs-5">Subject</th>
-                        <th class="col-xs-3">Prediction</th>
-                        <th class="col-xs-4">Object</th>
+                        <th class="col-xs-4">Prediction</th>
+                        <th class="col-xs-8">Object</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -66,7 +65,35 @@
 
     </div>
 
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Detail</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="detail-triple-table" class="table table-bordered">
+                        <thead class="thead thead-invers">
+                        <tr>
+                            <th class="col-xs-4">Subject</th>
+                            <th class="col-xs-4">Prediction</th>
+                            <th class="col-xs-4">Object</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
 

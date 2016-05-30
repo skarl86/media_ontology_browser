@@ -8,29 +8,14 @@ body:lang(en) {
     font-family: "Nanum Gothic", serif;
 }
 
-.fixed1 {
-    left: 33%;
-    position: fixed;
-}
-.fixed2 {
-    position: fixed;
-}
-.scrollit {
-    float: left;
-}
 
-.table-fixed thead {
-    width: 97%;
+.video-list {
+    height: 600px;
+    overflow:scroll;
+    overflow-y:auto;
 }
-.table-fixed tbody {
-    height: 100%;
-    overflow-y: auto;
-    width: 100%;
-}
-.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-    display: block;
-}
-.table-fixed tbody td, .table-fixed thead > tr> th {
-    float: left;
-    border-bottom-width: 0;
+.triple-table-fixed {
+    left: 33%;
+    top: 200px;
+    position: fixed;
 }
