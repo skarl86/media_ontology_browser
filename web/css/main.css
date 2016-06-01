@@ -7,15 +7,20 @@ body:lang(en) {
     /*font-family: 'Source Sans Pro', serif;*/
     font-family: "Nanum Gothic", serif;
 }
-
-
-.video-list {
-    height: 600px;
-    overflow:scroll;
-    overflow-y:auto;
+.video-loading {
+    top: 100px;
 }
-.triple-table-fixed {
-    left: 33%;
-    top: 200px;
-    position: fixed;
+.shot-loading {
+    top: 60px;
 }
+
+/*.video-list {*/
+    /*height: 600px;*/
+    /*overflow:scroll;*/
+    /*overflow-y:auto;*/
+/*}*/
+/*.triple-table-fixed {*/
+    /*left: 33%;*/
+    /*top: 200px;*/
+    /*position: fixed;*/
+/*}*/

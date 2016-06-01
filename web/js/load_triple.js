@@ -1,7 +1,15 @@
 /**
+ * Created by Namgee on 2016. 6. 1..
+ */
+/**
  * Created by NK on 2016. 5. 26..
  */
+
+var videoTarget = $('#video-loading');
+var shotTarget = $('#shot-loading');
+
 var file = "data/new_media_video2.json";
+videoTarget.loadingOverlay();
 var jqxhr = $.getJSON( file , function() {
         console.log( "success" );
     })
@@ -17,6 +25,7 @@ var jqxhr = $.getJSON( file , function() {
 
 
 jqxhr.complete(function(data) {
+    videoTarget.loadingOverlay('remove');
     console.log( "second complete" );
     var json = jqxhr.responseJSON;
     for(var keyVideo in json){
@@ -24,29 +33,26 @@ jqxhr.complete(function(data) {
         var shots = video["shots"];
         var numberOfShot = Object.keys(shots).length
         var label = video.label;
-        $('#video-group').append(
-            '<div class="panel panel-default">' +
-            '<div class="panel-heading">' +
-            '<h4 class="panel-title">' +
-            '<a data-toggle="collapse" href="#' + keyVideo + '">'+ keyVideo + '  <span class="badge">'+ numberOfShot +'</span>' +
-            '<br><h6>[' + label + ']' + '</h6></a>'+
-            '</h4>' +
-            '</div>' +
-            '<div id="' + keyVideo + '" class="panel-collapse collapse">' +
-            '<ul id="shot-list" class="list-group">' +
+
+        $('#video-list').append(
+            '<li>' +
+            '<a href="javascript:;" data-toggle="collapse" data-target="#'+ keyVideo +'">' +
+            '<i class="fa fa-fw fa-video-camera"></i>'+ keyVideo +' <span class="badge">'+ numberOfShot +'</span><i class="fa fa-fw fa-caret-down"></i>' +
+            '<br><small>[' + label + ']' + '</small></a>'+
+            '<ul id="'+ keyVideo + '" class="collapse">' +
             makeShotList(shots) +
-            '</ul>'+
-                //'<div class="panel-footer">Footer</div>'+
-            '</div>'+
-            '</div>'
+            '</ul>' +
+            '</li>'
         );
     }
     $('a[href="#shot"]').click(function(){
         var inputShot = $(this).attr('id');
+        shotTarget.loadingOverlay();
         deletePlaceTable();
 
         var jqxhr = $.getJSON( file, function() {
                 console.log( "success" );
+
             })
             .done(function() {
                 console.log( "second success" );
@@ -60,6 +66,7 @@ jqxhr.complete(function(data) {
 
 
         jqxhr.complete(function(data) {
+            shotTarget.loadingOverlay("remove");
             var json = jqxhr.responseJSON;
             var videoID = inputShot.split("_")[0];
 
@@ -130,7 +137,9 @@ function makeShotList(shots){
     for(var shot in shots){
         var newShot = shot.split("_")[1];
         html = html.concat(
-            '<li class="list-group-item">'+ '<a id=' + shot + ' href=#shot' + '>'+ newShot + '</a></li>'
+            '<li>' +
+            '<a id=' + shot + ' href=#shot' + '> <i class="fa fa-fw fa fa-fw fa-file"></i>'+ newShot +" [None] "+ '</a>' +
+            '</li>'
         )
     }
 
@@ -140,10 +149,27 @@ function makeShotList(shots){
 function addRow(shotID, shotPropDic) {
 
     var html = "";
+    var num = 0;
+    var priorProperty = ["Visual", "Aural", "Who", "When", "Location", "Where"];
+
+    priorProperty.forEach(function (p) {
+        if(p in shotPropDic){
+            num = shotPropDic[p].length;
+            if(num > 1){
+                addSpanRow(shotID, num, p, shotPropDic[p])
+            }else {
+                addNotSpanRow(shotID, p, shotPropDic[p])
+            }
+        }
+
+        delete shotPropDic[p];
+    });
     for (var prop in shotPropDic) {
         var p = prop;
         var o = "";
-        var num = shotPropDic[prop].length;
+
+        num = shotPropDic[prop].length;
+
         if(num > 1){
             addSpanRow(shotID, num, p, shotPropDic[prop])
         }else {
@@ -166,10 +192,17 @@ function addNotSpanRow(shotID, property, dic){
         for (var propValue in dic[propElm]) {
             obj = propValue
         }
+
+        var refList = [];
+        dic[propElm][obj].forEach(function (triple) {
+            refList.push([triple.split("\t")[1], triple.split("\t")[2]].join("\t"))
+        });
+
         html = html.concat(
             '<tr>'+
-            '<td class="col-xs-4">' + property + '</td>' +
-            '<td class="col-xs-8">' + '<a data-toggle="modal" data-target="#myModal" href=#detail id='+ [shotID, obj, property].join("-") +'>'+ obj + '</a>'+'</td>'+
+            '<td class="col-xs-3">' + property + '</td>' +
+            '<td class="col-xs-4">' + obj + '</td>'+
+            '<td class="col-xs-5">' + refList.join("<br>") + '</td>'+
             '</tr>'
         )
     }
@@ -186,7 +219,7 @@ function addSpanRow(shotID, num, property, dic){
     for(var propElm in dic){
         if(propElm == 0){
             html = '<tr>' +
-                    '<td rowspan=' + num + ' class="col-xs-4">' + property + '</td>';
+                '<td rowspan=' + num + ' class="col-xs-3">' + property + '</td>';
         }
         for (var propValue in dic[propElm]) {
             obj = propValue
@@ -195,8 +228,14 @@ function addSpanRow(shotID, num, property, dic){
             html = html.concat('<tr>')
         }
 
+        var refList = [];
+        dic[propElm][obj].forEach(function (triple) {
+            refList.push([triple.split("\t")[1], triple.split("\t")[2]].join("\t"))
+        });
+
         html = html.concat(
-            '<td class="col-xs-8">' + '<a data-toggle="modal" data-target="#myModal" href=#detail id='+ [shotID, obj, property].join("-") +'>'+ obj + '</a>'+'</td>'+
+            '<td class="col-xs-4">' + obj + '</a>'+'</td>'+
+            '<td class="col-xs-5">' + refList.join("<br>") + '</td>'+
             '</tr>'
         );
     }

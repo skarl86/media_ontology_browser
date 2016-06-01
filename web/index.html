@@ -1,108 +1,133 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en">
+
 <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Media Ontology Browser</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <!-- All JavaScript at the bottom, except for Modernizr which
-  enables HTML5 elements & feature detects -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <title>Media Ontology Browser - A.I Lab, Soongsil University</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <!--<script type='text/javascript' src='./js/ntriple_parser.js'></script>-->
+    <!-- Loading Overlay CSS -->
+    <link rel="stylesheet" href="css/loading_overlay.css">
+    <!-- Main CSS -->
+    <link href="css/main.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 </head>
+
 <body>
 
-<!--<div id="file">-->
-    <!--<input type="file" id="files" name="files[]" multiple />-->
-    <!--<output id="list"></output>-->
-    <!--&lt;!&ndash;<script type="text/javascript" src="js/read_ntriple_file.js"></script>&ndash;&gt;-->
-<!--</div>-->
+<div id="wrapper">
 
-<div class="container">
-    <div class="jumbotron">
-        <h1><b>M</b>edia <b>O</b>ntology <b>B</b>rowser</h1>
-        <!--<p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>-->
-    </div>
-
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="col-sm-4 video-list">
-                <div class="panel-heading">
-                    <h4>
-                        <b>Video Object</b>
-                    </h4>
-                </div>
-                <div id="video-group" class="panel-group">
-
-                </div>
-            </div>
-
-            <div class="col-sm-8">
-                <div class="panel-heading">
-                    <h4>
-                        <b>Detail Shot</b>
-                    </h4>
-                </div>
-                <table id="triple-table" class="table table-bordered">
-                    <thead class="thead thead-inverse">
-                    <tr>
-                        <th class="col-xs-4">Prediction</th>
-                        <th class="col-xs-8">Object</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-                <script src="js/load_triple.js"></script>
-            </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><b>M</b>edia <b>O</b>ntology <b>B</b>rowser</a>
         </div>
 
-    </div>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul id="video-list" class="nav navbar-nav side-nav">
+                <li class="active">
+                    <a href="#"><i class="fa fa-fw fa-list"></i> Video List </a>
+                </li>
+                <div class="video-loading" id="video-loading"></div>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
 
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Detail</h4>
-                </div>
-                <div class="modal-body">
-                    <table id="detail-triple-table" class="table table-bordered">
-                        <thead class="thead thead-invers">
-                        <tr>
-                            <th class="col-xs-4">Subject</th>
-                            <th class="col-xs-4">Prediction</th>
-                            <th class="col-xs-4">Object</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+    <div id="page-wrapper">
 
-                        </tbody>
-                    </table>
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Shot Information <small>Reference Triple</small>
+                    </h1>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-fw fa-table"></i> Shot Information Table</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="shot-loading" class="shot-loading"></div>
+                            <table id="triple-table" class="table table-bordered table-hover table-striped">
+                                <thead class="thead thead-inverse">
+                                <tr>
+                                    <th class="col-xs-3">Predicate</th>
+                                    <th class="col-xs-4">Object</th>
+                                    <th class="col-xs-5">Ref</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="panel panel-default">
+        <!-- /.container-fluid -->
 
     </div>
-    <div class="jumbotron">
-
-    </div>
+    <!-- /#page-wrapper -->
 
 </div>
+<!-- /#wrapper -->
 
-<!--<script type="text/javascript" src="js/ntriple_parser.js"></script>-->
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="js/plugins/morris/raphael.min.js"></script>
+<script src="js/plugins/morris/morris.min.js"></script>
+<script src="js/plugins/morris/morris-data.js"></script>
+
+<!-- Loading overlay -->
+<script src="js/dist/loading-overlay.min.js"></script>
+<!-- main JavaScript -->
+<script src="js/load_triple.js"></script>
 
 </body>
+
 </html>
