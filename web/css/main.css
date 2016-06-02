@@ -3,9 +3,15 @@
 body, h1, h2, h3, b, td{
     font-family: "Nanum Gothic", serif;
 }
+body {
+    font-size: 62.5%;
+}
 body:lang(en) {
     /*font-family: 'Source Sans Pro', serif;*/
     font-family: "Nanum Gothic", serif;
+}
+.container {
+    width: 90% !important;
 }
 .video-loading {
     top: 100px;
@@ -13,9 +19,12 @@ body:lang(en) {
 .shot-loading {
     top: 60px;
 }
+.title-label{
+    color: rgba(255, 166, 77, 0.65);
+}
 
 .video-list {
-    height: 1300px;
+    height: 2048px;
     overflow:scroll;
     overflow-y:auto;
 }
@@ -32,4 +41,36 @@ body:lang(en) {
     position: fixed;
 }
 
-.
+.jumbotron{
+    border-style:solid;
+    border-width:1px;
+    margin-top: 10px;
+    background-color: #EFEFEF;
+    border-color: #a6a6a6;
+    padding: 10px;
+}
+
+
+.nk-custom {
+    border-color: #a6a6a6 !important;
+}
+.nk-panel-heading{
+    padding: 10px !important;
+}
+.panel-heading {
+    background-color: #FDF4E3 !important;
+    border-color: #a6a6a6 !important;
+    color: black !important;
+    padding: 10px !important;
+}
+
+
+
+#video {
+    background-color: #EFEFEF !important;
+    border-color: #a6a6a6 !important;
+}
+/*.panel-heading {*/
+
+/*}*/
+

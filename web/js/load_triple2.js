@@ -26,17 +26,19 @@ jqxhr.complete(function(data) {
         var label = video.label;
         $('#video-group').append(
             '<div class="panel panel-default">' +
-            '<div class="panel-heading">' +
-            '<h4 class="panel-title">' +
-            '<a data-toggle="collapse" href="#' + keyVideo + '">'+ keyVideo + '  <span class="badge">'+ numberOfShot +'</span>' +
-            '<br><h6>[' + label + ']' + '</h6></a>'+
-            '</h4>' +
+            '<div id="video" class="panel-heading nk-panel-heading">' +
+            '<h3 class="panel-title">' +
+            '<a data-toggle="collapse" href="#' + keyVideo + '">'+ keyVideo +
+            '</a>'+
+            ' <span class="badge">'+ numberOfShot +'</span>' +
+            '<p><p>[' + label + ']' +
+            '</h3>' +
             '</div>' +
             '<div id="' + keyVideo + '" class="panel-collapse collapse">' +
-            '<ul id="shot-list" class="list-group">' +
+            '<ul id="shot-list" class="list-group" >' +
             makeShotList(shots) +
             '</ul>'+
-                //'<div class="panel-footer">Footer</div>'+
+                //'<div class="panel-fo oter">Footer</div>'+
             '</div>'+
             '</div>'
         );
@@ -134,7 +136,7 @@ function makeShotList(shots){
     for(var shot in shots){
         var newShot = shot.split("_")[1];
         html = html.concat(
-            '<li class="list-group-item">'+ '<a id=' + shot + ' href=#shot' + '>'+ newShot + '</a></li>'
+            '<li class="list-group-item">'+ '<a id=' + shot + ' href=#shot' + '><h4 style="text-indent: 10px">'+ newShot + '</h4></a></li>'
         )
     }
 
@@ -144,10 +146,27 @@ function makeShotList(shots){
 function addRow(shotID, shotPropDic) {
 
     var html = "";
+    var num = 0;
+    var priorProperty = ["hasVisual", "hasAural", "hasWho", "hasWhen", "hasLocation", "hasWhere"];
+
+    priorProperty.forEach(function (p) {
+        if(p in shotPropDic){
+            num = shotPropDic[p].length;
+            if(num > 1){
+                addSpanRow(shotID, num, p, shotPropDic[p])
+            }else {
+                addNotSpanRow(shotID, p, shotPropDic[p])
+            }
+        }
+
+        delete shotPropDic[p];
+    });
     for (var prop in shotPropDic) {
         var p = prop;
         var o = "";
-        var num = shotPropDic[prop].length;
+
+        num = shotPropDic[prop].length;
+
         if(num > 1){
             addSpanRow(shotID, num, p, shotPropDic[prop])
         }else {
@@ -178,9 +197,9 @@ function addNotSpanRow(shotID, property, dic){
 
         html = html.concat(
             '<tr>'+
-            '<td class="col-xs-3">' + makeBrace(property) + '</td>' +
-            '<td class="col-xs-4">' + makeBrace(obj) + '</td>'+
-            '<td class="col-xs-5">' + refList.join("<br>") + '</td>'+
+            '<td class="col-xs-3"><h4 style="text-indent: 5px">' + makeBrace(property) + '</h4></td>' +
+            '<td class="col-xs-4"><h4 style="text-indent: 5px">' + makeBrace(obj) + '</h4></td>'+
+            '<td class="col-xs-5"><h4>' + refList.join("<p><p>") + '</h4></td>'+
             '</tr>'
         )
     }
@@ -197,7 +216,7 @@ function addSpanRow(shotID, num, property, dic){
     for(var propElm in dic){
         if(propElm == 0){
             html = '<tr>' +
-                '<td rowspan=' + num + ' class="col-xs-3">' + makeBrace(property) + '</td>';
+                '<td rowspan=' + num + ' class="col-xs-3"><h4 style="text-indent: 5px">' + makeBrace(property) + '</h4></td>';
         }
         for (var propValue in dic[propElm]) {
             obj = propValue
@@ -212,8 +231,8 @@ function addSpanRow(shotID, num, property, dic){
         });
 
         html = html.concat(
-            '<td class="col-xs-4">' + makeBrace(obj) + '</td>'+
-            '<td class="col-xs-5">' + refList.join("<br>") + '</td>'+
+            '<td class="col-xs-4"><h4 style="text-indent: 5px">' + makeBrace(obj) + '</h4></td>'+
+            '<td class="col-xs-5"><h4>' + refList.join("<p><p>") + '</h4></td>'+
             '</tr>'
         );
     }

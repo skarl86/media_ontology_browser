@@ -7,7 +7,6 @@
     <!-- All JavaScript at the bottom, except for Modernizr which
   enables HTML5 elements & feature detects -->
     <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="css/main.css">
 
     <!-- Loading Overlay CSS -->
     <link rel="stylesheet" href="css/loading_overlay.css">
@@ -33,40 +32,41 @@
 
 <div class="container">
     <div class="jumbotron">
-        <h1 align="center"><b>M</b>edia <b>O</b>ntology <b>B</b>rowser</h1>
+        <h1 class="title-label" align="center" style="color: #ff9933"><b>Media Ontology Browser</b></h1>
         <!--<p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>-->
     </div>
 
     <div class="row">
-        <div class="col-sm-4 video-list">
-            <div class="panel panel-primary">
+        <div class="col-sm-3">
+            <div class="panel nk-custom">
                 <div class="panel-heading">
-                    <h4 align="center">
+                    <h3 id="video-list-title" align="center">
                         <b>Video List</b>
-                    </h4>
+                    </h3>
                 </div>
-                <div id="video-group" class="panel-group">
+                <div id="video-group" class="panel-group  video-list">
 
                 </div>
             </div>
 
         </div>
 
-        <div class="col-sm-8" id="triple-table-dv">
-            <div class="panel panel-primary">
+
+        <div class="col-sm-9" id="triple-table-dv">
+            <div class="panel nk-custom">
                 <div class="panel-heading">
-                    <h4 align="center">
+                    <h3 align="center">
                         <b>Shot Triples</b>
-                    </h4>
+                    </h3>
                 </div>
 
                 <table id="triple-table" class="table table-bordered">
                     <!--<caption id="subject-label">Subject : None <br></caption>-->
                     <thead class="thead thead-inverse">
                     <tr>
-                        <th align="center" class="col-xs-3">Prediction</th>
-                        <th align="center" class="col-xs-4">Object</th>
-                        <th align="center" class="col-xs-5">Description</th>
+                        <th align="center" class="col-xs-3" style="padding: 1px"><h4 align="center"><b>Predicate</b></h4></th>
+                        <th align="center" class="col-xs-4" style="padding: 1px"><h4 align="center"><b>Object</b></h4></th>
+                        <th align="center" class="col-xs-5" style="padding: 1px"><h4 align="center"><b>Description</b></h4></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -88,12 +88,12 @@
                     <h4 class="modal-title">Detail</h4>
                 </div>
                 <div class="modal-body">
-                    <table id="detail-triple-table" class="table table-bordered">
+                    <table id="detail-triple-table" class="table table-bordered table-hover table-striped">
                         <thead class="thead thead-invers">
                         <tr>
-                            <th class="col-xs-4">Subject</th>
-                            <th class="col-xs-4">Prediction</th>
-                            <th class="col-xs-4">Object</th>
+                            <th class="col-xs-4"><h3>Subject</h3></th>
+                            <th class="col-xs-4"><h3>Prediction</h3></th>
+                            <th class="col-xs-4"><h3>Object</h3></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -118,6 +118,6 @@
 </div>
 
 <!--<script type="text/javascript" src="js/ntriple_parser.js"></script>-->
-
+<link rel="stylesheet" href="css/main.css">
 </body>
 </html>

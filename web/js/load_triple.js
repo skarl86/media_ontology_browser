@@ -8,7 +8,7 @@
 //var videoTarget = $('#video-loading');
 //var shotTarget = $('#shot-loading');
 
-var file = "data/new_media_video2.json";
+var file = "data/new_media_video3.json";
 //videoTarget.loadingOverlay();
 var jqxhr = $.getJSON( file , function() {
         console.log( "success" );
@@ -150,7 +150,7 @@ function addRow(shotID, shotPropDic) {
 
     var html = "";
     var num = 0;
-    var priorProperty = ["Visual", "Aural", "Who", "When", "Location", "Where"];
+    var priorProperty = ["hasVisual", "hasAural", "hasWho", "hasWhen", "hasLocation", "hasWhere"];
 
     priorProperty.forEach(function (p) {
         if(p in shotPropDic){
