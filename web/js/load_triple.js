@@ -5,11 +5,11 @@
  * Created by NK on 2016. 5. 26..
  */
 
-var videoTarget = $('#video-loading');
-var shotTarget = $('#shot-loading');
+//var videoTarget = $('#video-loading');
+//var shotTarget = $('#shot-loading');
 
 var file = "data/new_media_video2.json";
-videoTarget.loadingOverlay();
+//videoTarget.loadingOverlay();
 var jqxhr = $.getJSON( file , function() {
         console.log( "success" );
     })
@@ -25,7 +25,7 @@ var jqxhr = $.getJSON( file , function() {
 
 
 jqxhr.complete(function(data) {
-    videoTarget.loadingOverlay('remove');
+    //videoTarget.loadingOverlay('remove');
     console.log( "second complete" );
     var json = jqxhr.responseJSON;
     for(var keyVideo in json){
@@ -37,7 +37,7 @@ jqxhr.complete(function(data) {
         $('#video-list').append(
             '<li>' +
             '<a href="javascript:;" data-toggle="collapse" data-target="#'+ keyVideo +'">' +
-            '<i class="fa fa-fw fa-video-camera"></i>'+ keyVideo +' <span class="badge">'+ numberOfShot +'</span><i class="fa fa-fw fa-caret-down"></i>' +
+            '<i class="fa fa-fw fa-video-camera"></i> '+ keyVideo +' <span class="badge">'+ numberOfShot +'</span><i class="fa fa-fw fa-caret-down"></i>' +
             '<br><small>[' + label + ']' + '</small></a>'+
             '<ul id="'+ keyVideo + '" class="collapse">' +
             makeShotList(shots) +
@@ -47,7 +47,7 @@ jqxhr.complete(function(data) {
     }
     $('a[href="#shot"]').click(function(){
         var inputShot = $(this).attr('id');
-        shotTarget.loadingOverlay();
+        //shotTarget.loadingOverlay();
         deletePlaceTable();
 
         var jqxhr = $.getJSON( file, function() {
@@ -66,7 +66,7 @@ jqxhr.complete(function(data) {
 
 
         jqxhr.complete(function(data) {
-            shotTarget.loadingOverlay("remove");
+            //shotTarget.loadingOverlay("remove");
             var json = jqxhr.responseJSON;
             var videoID = inputShot.split("_")[0];
 
@@ -138,7 +138,7 @@ function makeShotList(shots){
         var newShot = shot.split("_")[1];
         html = html.concat(
             '<li>' +
-            '<a id=' + shot + ' href=#shot' + '> <i class="fa fa-fw fa fa-fw fa-file"></i>'+ newShot +" [None] "+ '</a>' +
+            '<a id=' + shot + ' href=#shot' + '> <i class="fa fa-fw fa fa-fw fa-file"></i> '+ newShot +" [None] "+ '</a>' +
             '</li>'
         )
     }

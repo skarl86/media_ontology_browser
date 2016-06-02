@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Media Ontology Browser</title>
+
+    <!-- All JavaScript at the bottom, except for Modernizr which
+  enables HTML5 elements & feature detects -->
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Loading Overlay CSS -->
+    <link rel="stylesheet" href="css/loading_overlay.css">
+    <!-- Main CSS -->
+    <link href="css/main.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!--<script type='text/javascript' src='./js/ntriple_parser.js'></script>-->
+
+</head>
+<body>
+
+<!--<div id="file">-->
+<!--<input type="file" id="files" name="files[]" multiple />-->
+<!--<output id="list"></output>-->
+<!--&lt;!&ndash;<script type="text/javascript" src="js/read_ntriple_file.js"></script>&ndash;&gt;-->
+<!--</div>-->
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 align="center"><b>M</b>edia <b>O</b>ntology <b>B</b>rowser</h1>
+        <!--<p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>-->
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 video-list">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 align="center">
+                        <b>Video List</b>
+                    </h4>
+                </div>
+                <div id="video-group" class="panel-group">
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-8" id="triple-table-dv">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 align="center">
+                        <b>Shot Triples</b>
+                    </h4>
+                </div>
+
+                <table id="triple-table" class="table table-bordered">
+                    <!--<caption id="subject-label">Subject : None <br></caption>-->
+                    <thead class="thead thead-inverse">
+                    <tr>
+                        <th align="center" class="col-xs-3">Prediction</th>
+                        <th align="center" class="col-xs-4">Object</th>
+                        <th align="center" class="col-xs-5">Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <script src="js/load_triple2.js"></script>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Detail</h4>
+                </div>
+                <div class="modal-body">
+                    <table id="detail-triple-table" class="table table-bordered">
+                        <thead class="thead thead-invers">
+                        <tr>
+                            <th class="col-xs-4">Subject</th>
+                            <th class="col-xs-4">Prediction</th>
+                            <th class="col-xs-4">Object</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+
+    </div>
+    <div class="jumbotron">
+
+    </div>
+
+</div>
+
+<!--<script type="text/javascript" src="js/ntriple_parser.js"></script>-->
+
+</body>
+</html>

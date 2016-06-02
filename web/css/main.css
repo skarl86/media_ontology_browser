@@ -14,13 +14,22 @@ body:lang(en) {
     top: 60px;
 }
 
-/*.video-list {*/
-    /*height: 600px;*/
-    /*overflow:scroll;*/
-    /*overflow-y:auto;*/
-/*}*/
-/*.triple-table-fixed {*/
-    /*left: 33%;*/
-    /*top: 200px;*/
-    /*position: fixed;*/
-/*}*/
+.video-list {
+    height: 1300px;
+    overflow:scroll;
+    overflow-y:auto;
+}
+
+.triple-table-dv {
+    height: 600px;
+    overflow:scroll;
+    overflow-y:auto;
+}
+
+.triple-table-fixed {
+    left: 33%;
+    top: 200px;
+    position: fixed;
+}
+
+.
